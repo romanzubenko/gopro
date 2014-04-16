@@ -26,17 +26,19 @@ def parser(filename,text):
 			articleCount += 1
 			sections = re.split(r"(\nSection [0-9]*)",e)
 			for s in sections:
-				if len(re.findall(r"\nSection [0-9]*",s)) == 0:
+				if len(re.findall(r"Section [0-9]*",s)) == 0:
 					if articleCount in sectionCounts:
 						sectionCounts[articleCount] += 1
 					else:
 						sectionCounts[articleCount] = 1
-		else:
-			pass
+				if articleCount not in sectionCounts:
+					sectionCounts[articleCount] = 0
 
 	print("Articles: " + str(articleCount))
 	print("Total Sections per Article: ")
-	for i in range(1,8):
+	for i in range(1,articleCount + 1):
+		if sectionCounts[i] != 0:
+			sectionCounts[i] -= 1
 		print("\t Article " + str(i) + ": "+ str(sectionCounts[i]))
 			
 
