@@ -37,7 +37,7 @@ def parser(filename,text):
 	print("Articles: " + str(articleCount))
 	print("Total Sections per Article: ")
 	for i in range(1,8):
-		print("Article " + str(i) + ": "+ str(sectionCounts[i]))
+		print("\t Article " + str(i) + ": "+ str(sectionCounts[i]))
 			
 
 	
