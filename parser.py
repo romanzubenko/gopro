@@ -16,6 +16,7 @@ def parser(filename,text):
 	'''
 
 	articleCount = 0
+	totalSectionCount = 0
 	sectionCounts = {}
 
 	articles = re.split(r"(\nArticle [0-9]*\.)",text)
@@ -31,14 +32,21 @@ def parser(filename,text):
 						sectionCounts[articleCount] += 1
 					else:
 						sectionCounts[articleCount] = 1
-				if articleCount not in sectionCounts:
-					sectionCounts[articleCount] = 0
+			if articleCount not in sectionCounts:
+				sectionCounts[articleCount] = 0
+				
+			if sectionCounts[articleCount] != 0:
+				sectionCounts[articleCount] -= 1
+			
+			totalSectionCount += sectionCounts[articleCount]
+
+
 
 	print("Articles: " + str(articleCount))
+	print("Sections: " + str(totalSectionCount))
+
 	print("Total Sections per Article: ")
 	for i in range(1,articleCount + 1):
-		if sectionCounts[i] != 0:
-			sectionCounts[i] -= 1
 		print("\t Article " + str(i) + ": "+ str(sectionCounts[i]))
 			
 
