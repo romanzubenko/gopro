@@ -11,11 +11,15 @@ filename = sys.argv[1]
 try:
 	fObject = open(filename, "r")
 	fileData = fObject.read()
+	parser(fileData)
 except:
-	print "wc: " + filename + ": open: No such file or directory"
+	print "parser: " + filename + ": open: No such file or directory"
 	exit 
 # 
 
 
 def parser(text):
-	return text
+	newLines = len(text.split("\n"))
+	words = len(text.split(" |\n"))
+	bytes = len(text.split("")) * 8
+	print newLines + " " + words + " " + bytes
