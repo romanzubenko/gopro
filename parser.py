@@ -1,10 +1,22 @@
 import sys,re
 
 def parser(filename,text):
-	newLines = len(text.split("\n"))
+	# step one
+	printOutput(text,"all",filename)
+	
+	text = re.sub(r'(I|We|You|They|a|and|the|that|of|for|with|)',"",text)
+
+	# step two
+	printOutput(text,"proper","")
+	
+
+def printOutput(text,marker,name):
+	newLines = len(text.split("\n")) - 1
 	words = len([string for string in re.split(r"(\s|\%|\#|\$|\^|\*|\+|\=|\"|\t|\.|\!|\?|\(|\)|\,|\:|\;|\n|\_|\~|\@|\'|\<|\>|\`|\[|\]|\||\{|\})",text) if (re.match('^[\w-]+$', string) is not None)])
 	bytes = len(text) 
-	print("     " +str(newLines) + "    " + str(words) + "   " + str(bytes) + " " + filename)
+	print(marker + ": " + str(newLines) + "    " + str(words) + "   " + str(bytes) + " " + name)
+
+
 
 
 # if filename is not passed
