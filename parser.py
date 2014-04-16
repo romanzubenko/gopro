@@ -2,7 +2,7 @@ import sys,re
 
 def parser(filename,text):
 	newLines = len(text.split("\n"))
-	words = len([string for string in re.split(r" |\t|\-|\.|\!\?|\(|\)",text) if string.isalpha()])
+	words = len([string for string in re.split(r"(\s|\%|\#|\$|\^|\*|\+|\=|\"|\t|\.|\!|\?|\(|\)|\,|\:|\;|\n|\_|\~|\@|\'|\<|\>|\`|\[|\]|\||\{|\})",text) if (re.match('^[\w-]+$', string) is not None)])
 	bytes = len(text) 
 	print("     " +str(newLines) + "    " + str(words) + "   " + str(bytes) + " " + filename)
 
